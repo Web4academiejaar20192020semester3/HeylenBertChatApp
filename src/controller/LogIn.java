@@ -33,6 +33,7 @@ public class LogIn extends RequestHandler {
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
 				createSession(person, request, response);
+                destination = "chatPage.jsp";
 			} else {
 				errors.add("No valid email/password");
 			}
@@ -49,6 +50,7 @@ public class LogIn extends RequestHandler {
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", person);
+
 	}
 
 }
