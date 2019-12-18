@@ -10,11 +10,10 @@ import javax.servlet.http.HttpSession;
 import domain.Person;
 import domain.PersonService;
 
-public class LogIn extends RequestHandler {
+public class LogIn extends SynchroonRequestHandler {
 
 	@Override
-	public String handleRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+	public String handleRequest(HttpServletRequest request,	HttpServletResponse response) {
 		String destination = "index.jsp";
 		List<String> errors = new ArrayList<String>();
 		
@@ -33,7 +32,6 @@ public class LogIn extends RequestHandler {
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
 				createSession(person, request, response);
-                destination = "chatPage.jsp";
 			} else {
 				errors.add("No valid email/password");
 			}
@@ -46,11 +44,9 @@ public class LogIn extends RequestHandler {
 		return destination;	
 	}
 	
-	private void createSession(Person person, HttpServletRequest request,
-			HttpServletResponse response) {
+	private void createSession(Person person, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", person);
-
 	}
 
 }

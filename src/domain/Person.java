@@ -1,11 +1,15 @@
 package domain;
 
-import java.io.UnsupportedEncodingException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,24 +21,31 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private Role role;
+	private String status;
+	private Gender gender;
+	private LocalDate birthday;
+	@JsonIgnore
+	private Set<Person> friends = new HashSet<>();
 
 	public Person(String userId, String password, String firstName,
-			String lastName,Role role) {
+			String lastName,Role role, String status) {
 		setUserId(userId);
 		setHashedPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setStatus(status);
 	}
 
 	public Person(String userId, String password, String salt,
-			String firstName, String lastName,Role role) {
+			String firstName, String lastName,Role role, String status) {
 		setUserId(userId);
 		setPassword(password);
 		setSalt(salt);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setStatus(status);
 	}
 
 	public Person() {
@@ -107,15 +118,13 @@ public class Person {
 		try {
 			MessageDigest crypt = MessageDigest.getInstance("SHA-1");
 			crypt.reset();
-			crypt.update(salt.getBytes("UTF-8"));
-			crypt.update(password.getBytes("UTF-8"));
+			crypt.update(salt.getBytes(StandardCharsets.UTF_8));
+			crypt.update(password.getBytes(StandardCharsets.UTF_8));
 			hashedPassword = new BigInteger(1, crypt.digest()).toString(16);
 		} catch (NoSuchAlgorithmException e) {
 			throw new DomainException(e.getMessage(), e);
-		} catch (UnsupportedEncodingException e) {
-			throw new DomainException(e.getMessage(), e);
 		}
-		return hashedPassword;
+        return hashedPassword;
 	}
 
 	public void setSalt(String salt) {
@@ -149,4 +158,41 @@ public class Person {
 		this.lastName = lastName;
 	}
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+	    if (status.isEmpty()){
+	        throw  new IllegalArgumentException("no status given");
+        }
+        this.status = status;
+    }
+
+    public Set<Person> getFriends() {
+	    return friends;
+    }
+
+    public void addFriend(Person friend) {
+        this.friends.add(friend);
+    }
+
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(LocalDate birthday) {
+		if(birthday.isAfter(LocalDate.now())){
+			throw new IllegalArgumentException();
+		}
+		this.birthday = birthday;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 }

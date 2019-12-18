@@ -24,6 +24,12 @@ public class Controller extends HttpServlet {
 		super();
 	}
 
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+		response.setHeader("Access-Control-Allow-Methods", "GET");
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers");
+	}
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
@@ -36,10 +42,12 @@ public class Controller extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
         String action = request.getParameter("action");
         String destination = "index.jsp";
+		RequestHandler handler = null;
         if (action != null) {
-        	RequestHandler handler;
         	try {
         		handler = controllerFactory.getController(action, model);
 				destination = handler.handleRequest(request, response);
@@ -51,6 +59,10 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
+        if(handler instanceof AsynchroonRequestHandler) {
+        	return ;
+		}
+
         RequestDispatcher view = request.getRequestDispatcher(destination);
         view.forward(request, response);
 	}

@@ -52,7 +52,7 @@ p>label {
 }
 
 input[type="text"],input[type="email"],input[type="password"],input[type="number"]
-	{
+{
 	border: 1px solid #aaa;
 	color: #666;
 	height: 30px;
@@ -141,4 +141,18 @@ nav ul li a#actual {
 
 nav ul li#current {
 	border-bottom: 1px solid black;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+input {
+	width: 100% !important;
+	margin-left: 0 !important;
+}
+
+button {
+	margin: 0 !important;
 }
