@@ -15,17 +15,17 @@ public class Blog {
     private static final List<Comment> comments = new ArrayList<>();
 
     @OnOpen
-    public void onOpen(Session session) throws IOException, EncodeException {
+    public void onOpen(Session session) throws IOException {
         sessions.add(session);
         ObjectMapper mapper = new ObjectMapper();
         session.getBasicRemote().sendText(mapper.writeValueAsString(comments));
     }
 
     @OnMessage
-    public void onMessage(Session session, String comment) throws IOException, EncodeException {
+    public void onMessage(String comment) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Comment commentObj = mapper.readValue(comment, Comment.class);
-        sendCommentToAll(commentObj);
+        sendcCommentToEveryone(commentObj);
         comments.add(commentObj);
     }
 
@@ -34,12 +34,13 @@ public class Blog {
         sessions.remove(session);
     }
 
-    private void sendCommentToAll(Comment comment) throws IOException, EncodeException {
-        for (Session s : sessions) {
+    private void sendcCommentToEveryone(Comment comment) throws IOException {
+        for (Session sessie : sessions) {
             List<Comment> result = new ArrayList<>();
             result.add(comment);
             ObjectMapper mapper = new ObjectMapper();
-            s.getBasicRemote().sendText(mapper.writeValueAsString(result));
+
+            sessie.getBasicRemote().sendText(mapper.writeValueAsString(result));
         }
     }
 }

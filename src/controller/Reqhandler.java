@@ -10,7 +10,7 @@ import domain.Role;
 
 import java.io.IOException;
 
-public interface RequestHandler {
+public interface Reqhandler {
 
 	String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException;
 	

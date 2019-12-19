@@ -5,9 +5,7 @@ import domain.Person;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-
-public class ChangeStatus extends AsynchroonRequestHandler {
+public class UpdateStatus extends AsynchReqHandler {
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {

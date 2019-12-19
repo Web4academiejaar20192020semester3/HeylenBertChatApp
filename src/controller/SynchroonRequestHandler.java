@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public abstract class SynchroonRequestHandler implements RequestHandler{
+public abstract class SynchroonRequestHandler implements Reqhandler {
     private PersonService personService;
 
     protected boolean isFromUserWithRole(HttpServletRequest request, Role role) {

@@ -4,16 +4,16 @@ import domain.PersonService;
 
 public class ControllerFactory {
 	
-    public RequestHandler getController(String key, PersonService model) {
+    public Reqhandler getController(String key, PersonService model) {
         return createHandler(key, model);
     }
     
-	private RequestHandler createHandler(String handlerName, PersonService model) {
-		RequestHandler handler = null;
+	private Reqhandler createHandler(String handlerName, PersonService model) {
+		Reqhandler handler = null;
 		try {
 			Class<?> handlerClass = Class.forName("controller."+ handlerName);
 			Object handlerObject = handlerClass.newInstance();
-			handler = (RequestHandler) handlerObject;
+			handler = (Reqhandler) handlerObject;
 	    	handler.setModel(model);
 		} catch (Exception e) {
 			throw new RuntimeException("Deze pagina bestaat niet!!!!");

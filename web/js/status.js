@@ -4,17 +4,17 @@ window.onload = function(){
 };
 
 let button = document.getElementById("statusButton");
-button.onclick = changeStatus;
+button.onclick = UpdateStatus;
 
-let  xHRObjectChangeStatus = new XMLHttpRequest();
+let  xHRObjectUpdateStatus = new XMLHttpRequest();
 
-function changeStatus() {
+function UpdateStatus() {
     let statusUpdate = document.getElementById("statusInput").value;
 
     if (statusUpdate !== "") {
-        xHRObjectChangeStatus.open("POST", "Controller?action=ChangeStatus&statusText="+encodeURIComponent(statusUpdate), true);
-        xHRObjectChangeStatus.setRequestHeader("Content-type", "application/x-www-from-urlencoded");
-        xHRObjectChangeStatus.send();
+        xHRObjectUpdateStatus.open("POST", "Controller?action=UpdateStatus&statusText="+encodeURIComponent(statusUpdate), true);
+        xHRObjectUpdateStatus.setRequestHeader("Content-type", "application/x-www-from-urlencoded");
+        xHRObjectUpdateStatus.send();
         document.getElementById("statusText").innerText = statusUpdate;
     }
 }

@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
         String action = request.getParameter("action");
         String destination = "index.jsp";
-		RequestHandler handler = null;
+		Reqhandler handler = null;
         if (action != null) {
         	try {
         		handler = controllerFactory.getController(action, model);
@@ -59,7 +59,7 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
-        if(handler instanceof AsynchroonRequestHandler) {
+        if(handler instanceof AsynchReqHandler) {
         	return ;
 		}
 

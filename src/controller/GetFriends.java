@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetFriends extends AsynchroonRequestHandler {
+public class GetFriends extends AsynchReqHandler {
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {

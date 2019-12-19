@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GetUsers extends AsynchroonRequestHandler {
+public class GetUsers extends AsynchReqHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Person> persons = getPersonService().getPersons();

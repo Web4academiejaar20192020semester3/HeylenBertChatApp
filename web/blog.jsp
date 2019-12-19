@@ -63,7 +63,7 @@
     </div>
 
     <div id="topic4">
-        <p>Wat zijn de examen vragen van web4</p>
+        <p>Wat zijn de examenvragen van web4</p>
         <ul id="topic4-comments"></ul>
         <ul>
             <li><input id="topic4-comment" type="text" placeholder="Enter a comment "></li>
@@ -74,7 +74,7 @@
     </div>
 
     <div id="topic5">
-        <p>Hoe heet bob</p>
+        <p>Wat moet je hier invullen?</p>
         <ul id="topic5-comments" ></ul>
         <ul>
             <li><input id="topic5-comment" type="text" placeholder="Enter a comment "></li>
