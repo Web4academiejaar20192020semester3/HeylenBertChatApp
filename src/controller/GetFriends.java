@@ -16,6 +16,7 @@ public class GetFriends extends AsynchReqHandler {
         if (user != null) {
             List<Person> friends = new ArrayList<>(user.getFriends());
             String result = this.toJson(friends);
+
             response.getWriter().write(result);
         }
         return null;

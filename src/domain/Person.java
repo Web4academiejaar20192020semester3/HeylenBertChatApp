@@ -1,7 +1,9 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -195,4 +197,5 @@ public class Person {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
+
 }

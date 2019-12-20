@@ -18,18 +18,19 @@ public class Register extends SynchroonRequestHandler{
         Person person = new Person();
 
         try {
-            String name = request.getParameter("name");
-            person.setFirstName(name);
+            String lName = request.getParameter("lastName");
+            person.setLastName(lName);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
 
         try {
-            String lastName = request.getParameter("lastName");
-            person.setLastName(lastName);
+            String fname = request.getParameter("name");
+            person.setFirstName(fname);
         } catch (Exception e) {
             errors.add(e.getMessage());
         }
+
 
         try {
             String userId = request.getParameter("email");
@@ -42,16 +43,14 @@ public class Register extends SynchroonRequestHandler{
             String gender = request.getParameter("gender");
             person.setGender(Gender.valueOf(gender));
         } catch (Exception e) {
-            System.out.println("gender");
             errors.add(e.getMessage());
         }
 
         try {
-            String strBirthday = request.getParameter("birthday");
-            LocalDate birthday = LocalDate.parse(strBirthday);
+            String bDay = request.getParameter("birthday");
+            LocalDate birthday = LocalDate.parse(bDay);
             person.setBirthday(birthday);
         } catch (Exception e) {
-            System.out.println("birtday");
             errors.add(e.getMessage());
         }
 
@@ -59,7 +58,7 @@ public class Register extends SynchroonRequestHandler{
             String password = request.getParameter("password");
             String passwordrep = request.getParameter("passwordrep");
             if (!password.equals(passwordrep)) {
-                throw new IllegalArgumentException("the passwords don't match");
+                throw new IllegalArgumentException("Passwords must match!");
             }
             person.setHashedPassword(password);
         } catch (Exception e) {

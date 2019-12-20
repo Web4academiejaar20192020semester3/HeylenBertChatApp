@@ -30,13 +30,13 @@
         </div>
     </c:if>
     <section>
-        <form action="Controller?action=Register" method="POST">
+        <form action="Controller?action=Register" method="POST" >
             <p>
                 <label for="name">Name </label>
                 <input type="text" id="name" name="name" required>
             </p>
             <p>
-                <label for="lastName">Last name</label>
+                <label  for="lastName">Last name</label>
                 <input type="text" id="lastName" name="lastName" required>
             </p>
             <p>

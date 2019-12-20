@@ -32,6 +32,7 @@ public class LogIn extends SynchroonRequestHandler {
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
 				createSession(person, request, response);
+				person.setStatus("online :)");
 			} else {
 				errors.add("No valid email/password");
 			}

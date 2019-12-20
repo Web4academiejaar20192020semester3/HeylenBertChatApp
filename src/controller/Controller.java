@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +18,35 @@ import domain.PersonService;
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private PersonService model = new PersonService();
+	private PersonService personService = new PersonService();
 	private ControllerFactory controllerFactory = new ControllerFactory();
 
 	public Controller() {
 		super();
 	}
 
-	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
-		response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-		response.setHeader("Access-Control-Allow-Methods", "GET");
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Headers");
-	}
+
+
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
+
+
+	}
+	protected void doOptions(HttpServletRequest request,
+							 HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Methods", "*");
+		response.addHeader("Access-Control-Allow-Headers", "Content-Type");
+		response.addHeader("Access-Control-Max-Age", "86400");
 	}
 
 	protected void processRequest(HttpServletRequest request,
@@ -49,12 +58,12 @@ public class Controller extends HttpServlet {
 		Reqhandler handler = null;
         if (action != null) {
         	try {
-        		handler = controllerFactory.getController(action, model);
+        		handler = controllerFactory.getController(action, personService);
 				destination = handler.handleRequest(request, response);
         	} 
-        	catch (NotAuthorizedException exc) {
+        	catch (NotAuthorizedException e) {
         		List<String> errors = new ArrayList<String>();
-        		errors.add(exc.getMessage());
+        		errors.add(e.getMessage());
         		request.setAttribute("errors", errors);
         		destination="index.jsp";
         	}
