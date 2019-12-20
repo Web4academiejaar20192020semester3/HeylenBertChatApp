@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetFriends extends AsynchReqHandler {
-
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Person user = (Person) request.getSession().getAttribute("user");

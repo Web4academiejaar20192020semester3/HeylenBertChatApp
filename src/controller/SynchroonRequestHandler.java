@@ -10,13 +10,10 @@ import java.io.IOException;
 
 public abstract class SynchroonRequestHandler implements Reqhandler {
     private PersonService personService;
-
     protected boolean isFromUserWithRole(HttpServletRequest request, Role role) {
         Person person = (Person) request.getSession().getAttribute("user");
         return person != null && person.getRole().equals(role);
     }
-
-
     @Override
     public abstract String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException;
 

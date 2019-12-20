@@ -7,7 +7,6 @@ public class ControllerFactory {
     public Reqhandler getController(String key, PersonService model) {
         return createHandler(key, model);
     }
-    
 	private Reqhandler createHandler(String handlerName, PersonService model) {
 		Reqhandler handler = null;
 		try {

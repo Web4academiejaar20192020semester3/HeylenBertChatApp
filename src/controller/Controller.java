@@ -24,10 +24,6 @@ public class Controller extends HttpServlet {
 	public Controller() {
 		super();
 	}
-
-
-
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
@@ -75,5 +71,4 @@ public class Controller extends HttpServlet {
         RequestDispatcher view = request.getRequestDispatcher(destination);
         view.forward(request, response);
 	}
-
 }
