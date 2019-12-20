@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SendText extends AsynchReqHandler {
+public class SendMessage extends AsynchReqHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Person user = (Person) request.getSession().getAttribute("user");
         if (user != null) {
             String userID = request.getParameter("userId");
-            Person person2 = getPersonService().getPerson(userID);
             Conversation found = null;
             if (user.getFriends().contains(getPersonService().getPerson(userID))) {
                 for (Conversation conversation : this.getPersonService().conversations) {
@@ -27,10 +26,9 @@ public class SendText extends AsynchReqHandler {
                     found = new Conversation(user, getPersonService().getPerson(userID));
                     this.getPersonService().conversations.add(found);
                 }
-
                 if (!request.getParameter("message").isEmpty()) {
                     found.messages.add(user.getUserId() + ": " +request.getParameter("message"));
-                    System.out.println("message sent");
+
                 }
             }
         }

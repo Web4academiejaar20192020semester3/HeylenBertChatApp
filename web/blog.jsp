@@ -18,12 +18,8 @@
             </ul>
         </div>
     </c:if>
-
-
     <div id="topic1">
-        <h3>
-            Hoe was de projectweek?
-        </h3>
+        <h3>Hoe was de projectweek?</h3>
         <ul id="topic1-comments"></ul>
         <ul>
             <li><input id="topic1-comment" type="text" placeholder="Enter a comment "></li>
@@ -45,7 +41,7 @@
     </div>
 
     <div id="topic3">
-        <h3>Naar welke muziek luister je</h3>
+        <h3>Naar welke	muziek	ben	je	momenteel aan het luisteren?</h3>
         <ul id="topic3-comments"></ul>
         <ul>
             <li><input id="topic3-comment" type="text" placeholder="Enter a comment "></li>
@@ -56,7 +52,7 @@
     </div>
 
     <div id="topic4">
-        <h3>Wat zijn de examenvragen van web4</h3>
+        <h3>Wat	zijn de examenvragen voor het vak Web4?</h3>
         <ul id="topic4-comments"></ul>
         <ul>
             <li><input id="topic4-comment" type="text" placeholder="Enter a comment "></li>
